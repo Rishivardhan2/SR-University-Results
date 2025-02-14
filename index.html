@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRU University Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        /* Header */
+        .header {
+            background-color: #1D4F91;
+            padding: 0px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin-left: 20px;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-buttons button {
+            background: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #002366;
+            padding: 10px;
+        }
+        .mobile-nav button {
+            background: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            width: 80%;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        /* Login Box */
+        .login-box {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 350px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .sign-in {
+            background: #002366;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        /* CAPTCHA */
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        /* Info Box */
+        .info-box {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .info-box img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        /* Footer */
+        .footer {
+            background: #002366;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .nav-buttons {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .mobile-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+    <img src="Screenshot 2025-02-13 195151.png">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-buttons">
+            <button>RESULTS</button>
+        </div>
+    </div>
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button>RESULTS</button>
+    </div>
+
+    <!-- Login Box -->
+    <div class="login-box">
+        <h2>Student Login</h2>
+        <input type="text" id="hallticket" class="input-field" placeholder="Enter Hallticket No">
+        <input type="password" id="password" class="input-field" placeholder="Enter Password">
+
+        <!-- CAPTCHA -->
+        <div class="captcha-container">
+            <canvas id="captchaCanvas" width="100" height="40"></canvas>
+            <button onclick="generateCaptcha()">&#x21bb;</button>
+        </div>
+        <input type="text" id="captchaInput" class="input-field" placeholder="Enter Captcha">
+
+        <button class="sign-in" onclick="validateLogin()">Sign In</button>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+        <img src="https://sraap.in/assets/img/SRAaP_02.WEBP" alt="NIRF Ranking">
+        <p>98<sup>th</sup> All India Rank in Engineering Category</p>
+        <p>101-150 Rank Band in University Category</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 SR University. All rights reserved.</p>
+    </div>
+
+    <script>
+        let captchaText = "";
+
+        function toggleMenu() {
+            let menu = document.getElementById("mobileNav");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        function generateCaptcha() {
+            const canvas = document.getElementById('captchaCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            captchaText = Math.random().toString(36).substring(2, 8).toUpperCase();
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText(captchaText, 10, 30);
+        }
+
+        function validateLogin() {
+            const hallticket = document.getElementById('hallticket').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const userCaptcha = document.getElementById('captchaInput').value.toUpperCase();
+
+            const validCredentials = {
+                "2203A51421": "2203A51421",
+                "2205A41126": "2205A41126",
+                "2203A51179": "2203A51179"
+            };
+
+            if (userCaptcha !== captchaText) {
+                alert("Incorrect Captcha. Please try again.");
+                generateCaptcha();
+                return;
+            }
+
+            if (validCredentials[hallticket] && validCredentials[hallticket] === password) {
+                alert("Login Successful! Redirecting...");
+                window.location.href = "RR.html";
+            } else {
+                alert("Invalid credentials. Redirecting...");
+                window.location.href = "index1.html";
+            }
+        }
+
+        window.onload = generateCaptcha;
+    </script>
+</body>
+</html>

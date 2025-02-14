@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR University Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        /* Header */
+        .header {
+            background-color: #1D4F91;
+            color: white;
+            padding: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Mobile Navigation Button */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+        .navbar a:hover {
+            background-color:yellow;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 150px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Responsive Navigation */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                display: none;
+            }
+
+            .navbar a {
+                display: block;
+                width: 100%;
+                padding: 12px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar.active {
+                display: flex;
+            }
+        }
+        .user-info {
+            display: flex;
+            align-items: right;
+            color: yellow;
+            margin-left: auto;
+        }
+
+        .user-info span {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .user-info {
+    display: flex;
+    align-items: center;
+    background-color: black; /* Black background */
+    color: yellow; /* Yellow text */
+    padding: 10px 20px;
+    justify-content: flex-end; /* Align content to the right */
+}
+
+.user-info span {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.user-info a {
+    color: yellow;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.user-info a:hover {
+    text-decoration: underline;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 60%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ddd;
+        }
+
+        .print-memo {
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        .print-memo:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="Screenshot 2025-02-13 195151.png">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar" id="navbar">
+        <div class="dropdown">
+            <a href="#">Academic +</a>
+            <div class="dropdown-content">
+                <a href="#">Syllabus</a>
+                <a href="#">Timetable</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <a href="#">Results +</a>
+            <div class="dropdown-content">
+                <a href="RR.html">Download Sem-Wise Results</a>
+                <a href="#">Internal Marks</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Exams +</a>
+            <div class="dropdown-content">
+                <a href="#">Exam Schedule</a>
+                <a href="#">Hall Ticket</a>
+            </div>
+        </div>
+    </div>
+    <div>
+    <div class="user-info">
+        <span>Welcome to KARRE RISHIVARDHAN - 2203A51421</span>
+        <a href="index.html" style="color: yellow;">Logout</a>
+        <img src="user.jpg" alt="User" class="user-icon">
+    </div>
+</div>
+</div>
+<div class="content">
+    <h3>Download Sem-Wise Results</h3>
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>Year</th>
+            <th>Sem</th>
+            <th>Exam Type</th>
+            <th>Exam Session</th>
+            <th>Print Memo</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>3</td>
+            <td>1</td>
+            <td>Regular</td>
+            <td>NOV-2024</td>
+            <td><button class="print-memo" onclick="printMemo()">Print Memo</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>Regular</td>
+            <td>MAY-2024</td>
+            <td><button class="print-memo" onclick="printMemo()">Print Memo</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>2</td>
+            <td>1</td>
+            <td>Regular</td>
+            <td>DEC-2023</td>
+            <td><button class="print-memo" onclick="printMemo()">Print Memo</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>1</td>
+            <td>2</td>
+            <td>Regular</td>
+            <td>JUN-2023</td>
+            <td><button class="print-memo" onclick="printMemo()">Print Memo</button></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>1</td>
+            <td>1</td>
+            <td>Regular</td>
+            <td>FEB-2023</td>
+            <td><button class="print-memo" onclick="printMemo()">Print Memo</button></td>
+        </tr>
+    </table>
+
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            navbar.classList.toggle("active");
+        }
+        function printMemo() {
+            alert("Printing Memo...");
+        }
+    </script>
+
+</body>
+</html>
